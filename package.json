@@ -1,9 +1,10 @@
 {
-  "name": "node-phpfpm",
+  "name": "@turox/node-phpfpm",
   "version": "1.0.1",
   "description": "nodejs run php scripts via phpfpm",
   "main": "index.js",
   "dependencies": {
+    "chai": "^4.0.2",
     "fastcgi-client": "0.0.1",
     "urlencode-for-php": "^1.0.2"
   },
