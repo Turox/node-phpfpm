@@ -1,8 +1,8 @@
-var PHP = require('../');
-var php = new PHP({documentRoot:__dirname+'/' });
+let PHP = require('../');
+let php = new PHP({documentRoot:__dirname+'/', port: 9123});
 
-var chai = require('chai');
-var expect = chai.expect;
+let chai = require('chai');
+let expect = chai.expect;
 
 describe('node-phpfpm', function()
 {
@@ -128,5 +128,17 @@ describe('node-phpfpm', function()
 			done();
 		});
 	});
+
+	it('test_$_server.php: should output modified $_SERVER var', function(done){
+        php.run({
+			uri: 'test_$_server.php',
+			remote_addr: '1.1.1.1',
+			remote_port: 123
+		}, function(err, output, errors){
+			expect(err).to.equal(false);
+			expect(output).to.equal('remote_addr 1.1.1.1, remote_port: 123');
+			done();
+		});
+	})
 
 });

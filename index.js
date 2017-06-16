@@ -14,12 +14,6 @@ function phpfpm(options)
 	!options.host && (options.host = '127.0.0.1');
 	!options.port && (options.port = 9000);
 	!options.documentRoot && (options.documentRoot = '');
-	!options.remote_addr && (options.remote_addr = '127.0.0.1');
-	!options.remote_port && (options.remote_port = 1234);
-	!options.server_addr && (options.server_addr = '127.0.0.1');
-	!options.server_port && (options.server_port = 80);
-	!options.server_name && (options.server_name = '127.0.0.1');
-	!options.server_software && (options.server_software = 'Apache 2');
 
 
 	this.options = options;
@@ -54,6 +48,12 @@ phpfpm.prototype.run = function(info, cb)
 {
 	if (typeof info === 'string') info = { method: 'GET', uri: info };
 	if (info.url && !info.uri) info.uri = info.url;
+    !info.remote_addr && (info.remote_addr = '127.0.0.1');
+    !info.remote_port && (info.remote_port = 1234);
+    !info.server_addr && (info.server_addr = '127.0.0.1');
+    !info.server_port && (info.server_port = 80);
+    !info.server_name && (info.server_name = '127.0.0.1');
+    !info.server_software && (info.server_software = 'Apache 2');
 
 	if (!this.ready)
 	{
@@ -87,7 +87,7 @@ phpfpm.prototype.run = function(info, cb)
 
 	!info.method && (info.method = 'GET');
 	info.method = info.method.toUpperCase();
-	if (info.method == 'POST')
+	if (info.method === 'POST')
 	{
 		!info.body && (info.body = '');
 		if (typeof info.body === 'string') info.body = new Buffer(info.body, 'utf8');
@@ -119,12 +119,12 @@ phpfpm.prototype.run = function(info, cb)
 		DOCUMENT_ROOT: this.options.documentRoot,
 		SERVER_PROTOCOL: 'HTTP/1.1',
 		GATEWAY_INTERFACE: 'CGI/1.1',
-		REMOTE_ADDR: this.options.remote_addr,
-		REMOTE_PORT: this.options.remote_port,
-		SERVER_ADDR: this.options.server_addr,
-		SERVER_PORT: this.options.server_port,
-		SERVER_NAME: this.options.server_name,
-		SERVER_SOFTWARE: this.options.server_software,
+		REMOTE_ADDR: info.remote_addr,
+		REMOTE_PORT: info.remote_port,
+		SERVER_ADDR: info.server_addr,
+		SERVER_PORT: info.server_port,
+		SERVER_NAME: info.server_name,
+		SERVER_SOFTWARE: info.server_software,
 		REDIRECT_STATUS: 200
 	};
 
