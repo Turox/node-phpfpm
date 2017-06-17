@@ -1,6 +1,6 @@
 {
   "name": "@turox/node-phpfpm",
-  "version": "1.0.2",
+  "version": "1.0.2.1",
   "description": "nodejs run php scripts via phpfpm",
   "main": "index.js",
   "dependencies": {
