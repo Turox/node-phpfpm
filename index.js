@@ -53,7 +53,7 @@ phpfpm.prototype.run = function(info, cb)
     !info.server_addr && (info.server_addr = '127.0.0.1');
     !info.server_port && (info.server_port = 80);
     !info.server_name && (info.server_name = '127.0.0.1');
-    !info.server_software && (info.server_software = 'Apache 2');
+    !info.server_software && (info.server_software = 'node-phpfpm');
 
 	if (!this.ready)
 	{
