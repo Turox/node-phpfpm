@@ -59,8 +59,8 @@ available keys in options object
 * `contentLength` optional [string] the content-length header
 * `server_addr` optional [string] associated with PHP $_SERVER['REMOTE_ADDR'] var
 * `server_port` optional [string] associated with PHP $_SERVER['REMOTE_PORT'] var
-* `contentType` optional [string] associated with PHP $_SERVER['SERVER_NAME'] var
-* `contentLength` optional [string] associated with PHP $_SERVER['SERVER_SOFTWARE'] var
+* `server_name` optional [string] associated with PHP $_SERVER['SERVER_NAME'] var
+* `server_software` optional [string] associated with PHP $_SERVER['SERVER_SOFTWARE'] var
 
 
 if you send a string as `options`, it will be converted to:
